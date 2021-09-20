@@ -1,66 +1,32 @@
-//  Sesión 13 - 13/09/2021
+//  Sesión 15 - 15/09/2021
 
-//  Factorial:   n! = n * n-1 * ... * 3 * 2 * 1
 #include <stdio.h>			// para la entrada y salida
 #include <stdlib.h>			// para el system()
-#include <string.h>			// para el manejo de las cadenas
 
-struct Persona				//  DEfine el tipo de dato llamado "Persona"
-{
-	char Nombre[15];
-	char Apellido[15];
-};
+int global;				// Variable global (externa)
 
-struct Datos				// DEfine un nuevo tipo de dato "Datos"
-{ 
-	struct Persona nombre;
-	int edad;
-	char sexo;
-	char direccion[30];
-};
+int elevaCuadrado(int numero)	// encabezado  - argumento formal
+{								// cuerpo de la función	
+	global = 3;
+	return (numero * numero);
+}
 
+//  Declaración de la funcion main()
+int main( )					// encabezado
+{							// cuerpo de la función	
+	int calculo;			//  Variables automáticas (locales)
+	static int numero;		//  Variable estática (local)
 
-int main()
-{
-	int costo = 60;
-	int posicion;
-	//struct Datos Agenda;		//  DEfino una variable del tipo struct Agenda
-	struct Datos Agenda[10];	//  DEfino un  arreglo de variables del tipo struct Agenda
+	global = 10;
 
-	//printf("En qué posición deseas se guarden los datos: ");
-	//scanf("%d", &posicion);
-	//fflush(stdin);
+	printf("Dame el numero del que quieres el cuadrado: "); //  invocación -  argumento actua
+	scanf("%d", &numero);					//  invocación -  argumento actua
 
-	for(posicion = 0; posicion < 2; posicion++)
-	{
-		printf("\nPersona no. %d:\n", posicion);
-		printf("Dame el nombre de la persona: ");
-		gets(Agenda[posicion].nombre.Nombre);
-		fflush(stdin);
-		printf("Dame el apellido de la persona: ");
-		gets(Agenda[posicion].nombre.Apellido);
-		printf("Dame la edad de la persona: ");
-		scanf("%d", &Agenda[posicion].edad);
-		fflush(stdin);				//  Vaciamos el Buffer de teclado parqa forzar se pida el siguiente char
-		printf("Dame el sexo de la persona: ");
-		scanf("%c", &Agenda[posicion].sexo);
-		fflush(stdin);	
-		printf("Dame la dirección de la persona: ");
-		gets(Agenda[posicion].direccion);
+	calculo = elevaCuadrado(numero);		//  invocación -  argumento actual
 
-		
-	} 
+	printf("El cuadrado de %d es %d\n", numero, calculo); //  invocación -  argumento actua
+	
 
-	for(posicion = 0; posicion < 2; posicion++)
-	{
-		printf("\nNombre: \t%s %s\nEdad: \t\t%d\nSexo:\t\t%c\nVive en \t%s\n", Agenda[posicion].nombre.Nombre, Agenda[posicion].nombre.Apellido, Agenda[posicion].edad, Agenda[posicion].sexo, Agenda[posicion].direccion);
-	}
-	/*Agenda.edad = 0;
-	Agenda.sexo = '0';
-	strcpy(Agenda.nombre, "0");
-	strcpy(Agenda.direccion, "0" );
-	printf("\nNombre: \t%s\nEdad: \t\t%d\nSexo:\t\t%c\nVive en \t%s\n", Agenda.nombre, Agenda.edad, Agenda.sexo, Agenda.direccion);*/
-
-	system("pause");
-	return 1;
+	system("pause");				//  invocación -  argumento actua
+	return 0;
 }
