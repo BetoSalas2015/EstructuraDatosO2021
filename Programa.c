@@ -1,32 +1,34 @@
-//  Sesión 15 - 15/09/2021
+//  Sesión 16 - 21/09/2021
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include <stdio.h>			// para la entrada y salida
-#include <stdlib.h>			// para el system()
-
-int global;				// Variable global (externa)
-
-int elevaCuadrado(int numero)	// encabezado  - argumento formal
-{								// cuerpo de la función	
-	global = 3;
+int square(int numero)
+{
 	return (numero * numero);
 }
 
-//  Declaración de la funcion main()
-int main( )					// encabezado
-{							// cuerpo de la función	
-	int calculo;			//  Variables automáticas (locales)
-	static int numero;		//  Variable estática (local)
+float pitagoras(int cateto1, int cateto2)
+{
+	return sqrt( (int)square(cateto1) + square(cateto2) );
+}
 
-	global = 10;
+void datos(void)
+{
+	int c1, c2;
+	float h;
+	printf("Dame el cateto adyacente: ");
+	scanf("%d", &c1);
+	printf("Dame el cateto opuesto: ");
+	scanf("%d", &c2);
+	h = pitagoras(c1, c2);
+	printf("La hipotenusa del triangulo es %f: \n", h);
 
-	printf("Dame el numero del que quieres el cuadrado: "); //  invocación -  argumento actua
-	scanf("%d", &numero);					//  invocación -  argumento actua
+}
 
-	calculo = elevaCuadrado(numero);		//  invocación -  argumento actual
-
-	printf("El cuadrado de %d es %d\n", numero, calculo); //  invocación -  argumento actua
-	
-
-	system("pause");				//  invocación -  argumento actua
-	return 0;
+int main()
+{
+	datos();
+	system("pause");
+	return 1;
 }
