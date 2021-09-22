@@ -1,16 +1,20 @@
-//  Sesión 16 - 21/09/2021
+//  Sesión 17 - 22/09/2021
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "Estructura.h"
 
-int square(int numero)
-{
-	return (numero * numero);
-}
-
+//   Funciones
 float pitagoras(int cateto1, int cateto2)
 {
 	return sqrt( (int)square(cateto1) + square(cateto2) );
+}
+
+int main()
+{
+	datos();
+	system("pause");
+	return 1;
 }
 
 void datos(void)
@@ -23,12 +27,9 @@ void datos(void)
 	scanf("%d", &c2);
 	h = pitagoras(c1, c2);
 	printf("La hipotenusa del triangulo es %f: \n", h);
-
 }
 
-int main()
+int square(int numero)
 {
-	datos();
-	system("pause");
-	return 1;
+	return (numero * numero);
 }
