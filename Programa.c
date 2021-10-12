@@ -1,23 +1,25 @@
-//  Sesión 25 - 11/10/2021
-//  Repasdo general de Arreglos
-#include <stdio.h>
-#include <stdlib.h>
+//  Sesión 26 - 12/10/2021
+//  Cadenas
 
+#include <stdio.h>		//  Para la I/O o E/S
+#include <stdlib.h>		//  PAra funciones de utilería
+#include <string.h>		//  Para el manejo de cadenas
 
 int main()
 {
-	int y;					// Declaro una variable entera llamada y
-	
-	// Declaro un arreglo de 10 enteros llamado arreglo
-	int arreglo[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}; // Inicialización directa.
-	int arreglo2[10];
-	int matriz[3][3] = { {1,2,3}, {4, 5, 6}, {7, 8,9}};
-
-	for(y = 0; y <= 10; y++)
-		arreglo2[y] = 1;			//  Inicialización manual
-
-	arreglo[8] = 24;
-
+	int i;					// Declaro una variable entera llamada i
+	char cadena[80];
+	char cadena2[80];
+	printf("Dame una cadena: ");
+	gets(cadena);
+	i = 0;					//  Nos posicionamos en el indice 0 de la cadena
+	while(cadena[i] != '\0')
+	{
+		cadena2[i] = cadena[i];
+		i++;				//   Avanzo al siguiente caracter en la cadena
+	}
+	cadena2[i] = '\0';
+	printf("La copia de la cadena es %s\n", cadena2);
 	system("pause");
 	return 1;
 }
