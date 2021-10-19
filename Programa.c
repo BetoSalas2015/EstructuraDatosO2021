@@ -1,25 +1,28 @@
-//  Sesión 26 - 12/10/2021
-//  Cadenas
+//  Sesión 28 - 18/10/2021
+//  Base.c
 
 #include <stdio.h>		//  Para la I/O o E/S
-#include <stdlib.h>		//  PAra funciones de utilería
-#include <string.h>		//  Para el manejo de cadenas
+#include <stdlib.h>		//  PAra system(), srand() y rand()
+#include <time.h>		//  Para las función de tiempo: time()
+
+// #define macro valor
+#define SIZE 100
+#define RANGO 1000
 
 int main()
 {
-	int i;					// Declaro una variable entera llamada i
-	char cadena[80];
-	char cadena2[80];
-	printf("Dame una cadena: ");
-	gets(cadena);
-	i = 0;					//  Nos posicionamos en el indice 0 de la cadena
-	while(cadena[i] != '\0')
-	{
-		cadena2[i] = cadena[i];
-		i++;				//   Avanzo al siguiente caracter en la cadena
-	}
-	cadena2[i] = '\0';
-	printf("La copia de la cadena es %s\n", cadena2);
+	int arreglo[SIZE];				// Creo un archivo de datos de tamaño SIZE
+	int i;							// Variaqble controladora para los ciclos
+	
+	srand( time(0) );					// Proveemos la semilla de numeros aleatorios
+
+	for(i = 0; i < SIZE; ++i)
+		arreglo[i] = rand() % RANGO;
+
+	for(i = 0; i < SIZE; ++i)
+		printf("%d, ", arreglo[i]);
+	putchar('\n');
+
 	system("pause");
 	return 1;
 }
