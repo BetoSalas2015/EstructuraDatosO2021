@@ -1,4 +1,4 @@
-//  Sesión 39 - 16/11/2021
+//  Sesión 40 - 17/11/2021
 //  Programa.c
 
 #include <stdio.h>		//  Para la I/O o E/S
@@ -62,22 +62,44 @@ int main()
 
 	// Versión con apuntadores
 
-	int a, b, c;
-	int *pa, *pb, *pc;	// declaramos los apuntadores  
+	//int a, b, c;
+	//int *pa, *pb, *pc;	// declaramos los apuntadores  
 
-	pa = &a;			//  Asignamos los "apodos" - Guardamos las direcciones de memoria
-	pb = &b;
-	pc = &c;
+	//pa = &a;			//  Asignamos los "apodos" - Guardamos las direcciones de memoria
+	//pb = &b;
+	//pc = &c;
 
-	printf("Dame el primer número: ");
-	scanf("%d", pa);		//  dentro de pa está guardado &a
-	printf("Dame el segundo número: ");
-	scanf("%d", pb);
+	//printf("Dame el primer número: ");
+	//scanf("%d", pa);		//  dentro de pa está guardado &a
+	//printf("Dame el segundo número: ");
+	//scanf("%d", pb);
 
-	*pc = *pa + *pb;
+	//*pc = *pa + *pb;
 
-	printf("El resultado de la suma de %d + %d es igual a %d\n", *pa, *pb, *pc);
+	//printf("El resultado de la suma de %d + %d es igual a %d\n", *pa, *pb, *pc);
+	int arreglo[5] = {0, 1, 2, 3, 4};		// Arreglo de 5 enteros llamado Arreglo
+	int *arrptr[5];							// Arreglo de apuntadores a entero llamado arrptr
+	int *ptr;
+	int i;
 
+	for(i = 0; i < 5; i++)
+		printf("Arreglo[%d] = %d esta en la posición de memoria %p\n", i, arreglo[i],&arreglo[i]);
+
+	ptr = &arreglo[2];		
+	printf("La direccion guardada en ptr es: %p, y ahi esta el %d\n", ptr, *ptr);
+
+	ptr = &arreglo[0];		
+	printf("La direccion guardada en ptr es: %p, y ahi esta el %d\n", ptr, *ptr);
+
+	ptr = arreglo;			// ptr apunta al elemento base ( [0] )
+ 	printf("La direccion guardada en ptr es: %p, y ahi esta el %d\n", ptr, *ptr);
+
+	////////  Arreglo de Apuntadores
+	arrptr[0] = arreglo;
+	printf("La direccion guardada en arrptr[0] es: %p, y ahi esta el %d\n", arrptr[0], *arrptr[0]);
+
+	arrptr[1] = &arreglo[1];
+	printf("La direccion guardada en arrptr[1] es: %p, y ahi esta el %d\n", arrptr[1], *arrptr[1]);
 
 	system("pause");
 	return 1;
