@@ -1,7 +1,12 @@
-//  Sesión 46 - 01/12/2021
+//  Sesión 8 - 07/12/2021
 //  Programa.c
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
+//  Prototipos
+void escribeArchivo();
+void copiaArchivo();
 
 FILE *entrada;
 FILE *salida;
@@ -25,6 +30,7 @@ void escribeArchivo()
 		system("pause");
 		return 1;				//  se acabó. Terminamos el programa con codigo de error 1
 	}
+
 
 	printf("Saludos programas!!!!\n");
 	fprintf(archivo, "este texto esta agregado....\n");
@@ -73,9 +79,9 @@ void escribeRegistro()
 	salida = fopen("Agenda.datos", "w");
 	if(salida == NULL)			//  El archivo se pudo abrir?
 	{							//  no se pudo abrir!!!
-		printf("Error: El archivo no existe!\n");
+		printf("Error: El archivo no no se puede crear!\n");
 		system("pause");
-		return 1;				//  se acabó. Terminamos el programa con codigo de error 1
+		return ;				//  se acabó. Terminamos el programa con codigo de error 1
 	}
 
 	fwrite(&Agenda, sizeof(struct Datos), 1, salida); //  sizeof(Agenda) -  es lo mismo
@@ -91,7 +97,7 @@ void leeRegistro()
 	{							//  no se pudo abrir!!!
 		printf("Error: El archivo no existe!\n");
 		system("pause");
-		return 1;				//  se acabó. Terminamos el programa con codigo de error 1
+		return ;				//  se acabó. Terminamos el programa con codigo de error 1
 	}
 
 	fread(&Agenda, sizeof(struct Datos), 1, entrada); //  sizeof(Agenda) -  es lo mismo
@@ -100,25 +106,66 @@ void leeRegistro()
 
 	fclose(entrada);
 }
-int main()
+
+void escribeRegistros()
 {
 	//  Archivos de Acceso aleatorio
 	struct Datos Agenda[10];
+	int i, cont = 0;
+
+	Agenda[0].edad = 65;
+	Agenda[0].sexo = 'H';
+	strcpy(Agenda[0].nombre, "Juanito Perez");
+	strcpy(Agenda[0].direccion, "2 sur 2");
+
+	salida = fopen("Agenda.datos", "w");
+	if(salida == NULL)			//  El archivo se pudo abrir?
+	{							//  no se pudo abrir!!!
+		printf("Error: El archivo no no se puede crear!\n");
+		system("pause");
+		return ;				//  se acabó. Terminamos el programa con codigo de error 1
+	}
+	//  uno por uno
+	for(i = 0; i < 10; i++)
+		//if(!vacio)   
+		{
+			fwrite(&Agenda[i], sizeof(struct Datos), 1, salida); //  sizeof(Agenda) -  es lo mismo
+			cont++;
+		}
+	//  todos a la vez
+	fwrite(&Agenda, sizeof(struct Datos), 10, salida); //  sizeof(Agenda) -  es lo mismo
+
+	fclose(salida);
+}
+
+void leeRegistros()
+{
+	struct Datos Agenda[10];
+	int i;
 
 	entrada = fopen("Agenda.datos", "r");
 	if(entrada == NULL)			//  El archivo se pudo abrir?
 	{							//  no se pudo abrir!!!
 		printf("Error: El archivo no existe!\n");
 		system("pause");
-		return 1;				//  se acabó. Terminamos el programa con codigo de error 1
+		return ;				//  se acabó. Terminamos el programa con codigo de error 1
 	}
-
-	for(i = 0; i < 10; ++i)
+	//  Uno por uno
+	i = 0;
+	while( !feof(entrada) )
 	{
-		fread(&Agenda, sizeof(struct Datos), 1, entrada); //  sizeof(Agenda) -  es lo mismo
-		printf("Nombre: %s, Edad: %d, Sexo: %c, Direccion: %s\n", Agenda.nombre, Agenda.edad, Agenda.sexo, Agenda.direccion);
+		fread(&Agenda[i], sizeof(struct Datos), 1, entrada); //  sizeof(Agenda) -  es lo mismo
+		printf("Nombre: %s, Edad: %d, Sexo: %c, Direccion: %s\n", Agenda[i].nombre, Agenda[i].edad, Agenda[i].sexo, Agenda[i].direccion);
+		i++;
 	}
+	// todos a la vez
+	fread(&Agenda, sizeof(struct Datos), 10, entrada); //  sizeof(Agenda) -  es lo mismo
+	
 	fclose(entrada);
+}
+int main()
+{
+
 		 
 	system("pause");
 	return 0;			//  todo bien: código 0
